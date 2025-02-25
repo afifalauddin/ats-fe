@@ -29,7 +29,7 @@ export const env = createEnv({
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     TOKEN_NAME: process.env.TOKEN_NAME,
-    API_URL: process.env.NEXT_PUBLIC_PORTAL_API_URL,
+    API_URL: process.env.NEXT_PUBLIC_API_URL,
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
