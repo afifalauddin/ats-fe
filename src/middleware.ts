@@ -3,15 +3,15 @@ import { NextResponse } from "next/server";
 import { env } from "./env";
 
 export function middleware(request: NextRequest) {
+  //check if token exist for authenticated user
   const currentUser = request.cookies.get(env.TOKEN_NAME)?.value;
-  console.log("[middleware]", {
-    currentUser: !!currentUser,
-  });
 
   if (!currentUser) {
+    //send to login page if no user is found
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
+  //send to dashboard if user is found
   return NextResponse.redirect(new URL("/recruiter/dashboard", request.url));
 }
 

@@ -15,25 +15,23 @@ interface Props {
 const MainNavigation = ({ children }: Props) => {
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
   return (
-    <>
-      <div className="flex gap-6 md:gap-10">
-        <button
-          className="flex items-center md:hidden"
-          onClick={() => setShowMobileMenu(!showMobileMenu)}
-        >
-          <span className="sr-only">Menu</span>
-          {showMobileMenu ? <X /> : <Menu />}
-        </button>
-        {showMobileMenu && <MobileNavigation>{children}</MobileNavigation>}
+    <div className="flex gap-6 md:gap-10">
+      <button
+        className="flex items-center md:hidden"
+        onClick={() => setShowMobileMenu(!showMobileMenu)}
+      >
+        <span className="sr-only">Menu</span>
+        {showMobileMenu ? <X /> : <Menu />}
+      </button>
+      {showMobileMenu && <MobileNavigation>{children}</MobileNavigation>}
 
-        <Link href="/" className="flex h-12 items-center space-x-2">
-          ATS
-        </Link>
-        <div className="hidden md:flex">
-          <DesktopNavigation />
-        </div>
+      <Link href="/" className="flex h-12 items-center space-x-2">
+        ATS
+      </Link>
+      <div className="hidden md:flex">
+        <DesktopNavigation />
       </div>
-    </>
+    </div>
   );
 };
 
