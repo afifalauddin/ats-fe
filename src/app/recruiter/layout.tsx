@@ -1,5 +1,5 @@
-import MainNavigation from "~/components/main-navigation";
-import UserNavigation from "~/components/user-navigation";
+import MainNavigation from "~/components/navigation/main-navigation";
+import UserNavigation from "~/components/navigation/user-navigation";
 
 export default function RootLayout({
   children,

@@ -9,11 +9,7 @@ interface Props {
   search?: string;
 }
 
-export const useActiveJobList = ({
-  page = 1,
-  limit = 20,
-  search,
-}: Props = {}) => {
+export const useActiveJobList = ({ page = 1, limit = 20, search }: Props) => {
   type ResponseType = BaseResponseWithPagination<JobPosting[]>;
   const { client } = useApi();
 

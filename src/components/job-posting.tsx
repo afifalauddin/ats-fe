@@ -1,36 +1,27 @@
-import type { JobPosting as Prop } from "~/types/api";
+"use client";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "~/components/ui/card";
+import { type FC } from "react";
+import { useJobPosting } from "~/hooks/useJobPosting";
+import { JobPostingViewer } from "./job-posting-viewer";
 
-export const JobPosting: React.FC<{ job: Prop }> = ({ job }) => {
+interface Props {
+  id: number;
+}
+
+export const JobPosting: FC<Props> = ({ id }) => {
+  const { posting } = useJobPosting({
+    id,
+  });
+
+  if (!posting) {
+    return <div>Job not found</div>;
+  }
+
   return (
-    <Card className="hover:outline hover:outline-primary">
-      <CardHeader>
-        <CardTitle>{job.title}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <CardDescription>{job.description}</CardDescription>
-        <div className="grid grid-cols-2">
-          <div className="inline-flex gap-1 text-sm text-zinc-500">
-            <div className="font-semibold">Keywords:</div>
-            {job.keywords?.map((keyword, i) => (
-              <div
-                key={`${keyword}_${i}`}
-                className="cursor-crosshair hover:outline hover:outline-primary"
-              >
-                {keyword}
-              </div>
-            ))}
-          </div>
-          <div className="flex items-center justify-end">read more</div>
-        </div>
-      </CardContent>
-    </Card>
+    <div className="container grid grid-cols-1 gap-4">
+      <h1 className="text-3xl font-bold">{posting.title}</h1>
+      <JobPostingViewer content={posting.description} />
+      <div>Keywords: {posting.keywords?.join(", ")}</div>
+    </div>
   );
 };

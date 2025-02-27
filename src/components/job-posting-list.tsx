@@ -1,7 +1,7 @@
 "use client";
 
 import { useActiveJobList } from "~/hooks/useActiveJobList";
-import { JobPosting } from "./job-posting";
+import { JobPostingCard } from "./job-posting-card";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { useState } from "react";
@@ -43,7 +43,9 @@ export const JobPostingList: React.FC = () => {
         </Button>
       </div>
       <div className="grid grid-cols-1 gap-4">
-        {jobPostingList?.map((job) => <JobPosting key={job.id} job={job} />)}
+        {jobPostingList?.map((job) => (
+          <JobPostingCard key={job.id} job={job} />
+        ))}
       </div>
     </div>
   );
