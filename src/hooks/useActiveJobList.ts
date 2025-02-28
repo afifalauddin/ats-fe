@@ -19,12 +19,18 @@ export const useActiveJobList = ({ page = 1, limit = 20, search }: Props) => {
     limit: number,
     search?: string,
   ) => {
+    const params = new URLSearchParams();
+    params.append("page", page.toString());
+    params.append("limit", limit.toString());
+
+    //check if search is available
+    if (search) {
+      params.append("search", search);
+    }
     const data = await client
-      .get<ResponseType>(
-        `/posting/list/active?page=${page}&limit=${limit}${
-          search ? `&search=${search}` : ""
-        }`,
-      )
+      .get<ResponseType>("/posting/list/active", {
+        params,
+      })
       .then((res) => {
         return res.data.data;
       })

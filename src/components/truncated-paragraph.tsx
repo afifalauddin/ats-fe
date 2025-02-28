@@ -2,11 +2,12 @@ import { type FC } from "react";
 import Markdown from "react-markdown";
 
 interface Props {
-  text: string;
+  text?: string;
   wordLimit?: number;
 }
 
 export const TruncatedMdText: FC<Props> = ({ text, wordLimit = 50 }) => {
+  if (!text) return null;
   const words = text.replaceAll("\n", "").split(" ");
   const truncated = words.length > wordLimit;
   const displayText = truncated

@@ -24,7 +24,12 @@ export interface JobPosting {
   requirements: string;
   deadline: string;
   keywords: string[] | null;
-  userId: 1;
   createdAt: string;
   updatedAt: string;
 }
+
+export interface JobPostingWithTotalApplications extends JobPosting {
+  totalApplications: number;
+}
+
+export type JobStatus = "submitted" | "reviewed" | "accepted" | "rejected";

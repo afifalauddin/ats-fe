@@ -1,4 +1,4 @@
-import type { JobPosting as Prop } from "~/types/api";
+import type { JobPostingWithTotalApplications } from "~/types/api";
 
 import {
   Card,
@@ -11,31 +11,45 @@ import { TruncatedMdText } from "./truncated-paragraph";
 import { Button } from "./ui/button";
 import Link from "next/link";
 
-export const JobPostingCard: React.FC<{ job: Prop }> = ({ job }) => {
+interface Props {
+  job: Partial<JobPostingWithTotalApplications>;
+  link?: string;
+  btnText?: string;
+}
+
+export const JobPostingCard: React.FC<Props> = ({ job, link, btnText }) => {
   return (
     <Card className="hover:outline hover:outline-primary">
       <CardHeader>
         <CardTitle>{job.title}</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="grid grid-cols-1 gap-1">
         <CardDescription>
           <TruncatedMdText text={job.description} />
         </CardDescription>
+        {job.totalApplications ? (
+          <CardDescription>
+            Total Applications: {job.totalApplications}
+          </CardDescription>
+        ) : job.totalApplications === 0 ? (
+          <CardDescription>Total Applications: N/A</CardDescription>
+        ) : null}
+
         <div className="grid grid-cols-2">
           <div className="inline-flex gap-1 text-sm text-zinc-500">
             <div className="font-semibold">Keywords:</div>
             {job.keywords?.map((keyword, i) => (
               <div
                 key={`${keyword}_${i}`}
-                className="cursor-crosshair hover:outline hover:outline-primary"
+                className="hover:underline-primary cursor-pointer hover:underline"
               >
                 {keyword}
               </div>
             ))}
           </div>
           <div className="flex items-center justify-end">
-            <Link href={`/posting/${job.id}`}>
-              <Button size="sm">Read More</Button>
+            <Link href={`/${link ?? "posting"}/${job.id}`}>
+              <Button size="sm">{btnText ?? "Read more"}</Button>
             </Link>
           </div>
         </div>

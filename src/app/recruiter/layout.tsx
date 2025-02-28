@@ -7,18 +7,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="grid grid-cols-1">
-      <header className="border-dark-400 sticky top-0 z-40 border-b bg-background px-8 md:px-20">
-        <div className="container flex h-16 items-center justify-between py-4">
+    <div className="grid grid-cols-1 gap-4">
+      <header className="sticky border-b border-zinc-400 bg-background">
+        <div className="container mx-auto flex items-center justify-between px-4 py-4 md:px-6 lg:px-8">
           <MainNavigation />
           <UserNavigation />
         </div>
       </header>
-      <div className="grid flex-1 gap-12">
-        <main className="flex min-w-full flex-1 flex-col overflow-hidden">
-          {children}
-        </main>
-      </div>
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8">{children}</main>
     </div>
   );
 }

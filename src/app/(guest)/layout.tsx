@@ -7,8 +7,8 @@ export default function GuestLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="grid grid-cols-1">
-      <header className="sticky mb-4 border-b border-zinc-400 bg-background">
+    <div className="grid grid-cols-1 gap-4">
+      <header className="sticky border-b border-zinc-400 bg-background">
         <div className="container mx-auto flex items-center justify-between px-4 py-4 md:px-6 lg:px-8">
           <Link href="/" className="flex items-center text-lg font-bold">
             ATS

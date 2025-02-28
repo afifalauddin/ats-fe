@@ -25,7 +25,10 @@ const MainNavigation = ({ children }: Props) => {
       </button>
       {showMobileMenu && <MobileNavigation>{children}</MobileNavigation>}
 
-      <Link href="/" className="flex h-12 items-center space-x-2">
+      <Link
+        href="/"
+        className="flex h-12 items-center space-x-2 text-lg font-bold"
+      >
         ATS
       </Link>
       <div className="hidden md:flex">

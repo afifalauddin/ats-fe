@@ -1,7 +1,5 @@
+import { JobPostingDashboard } from "~/components/job-posting-dashboard";
+
 export default function Dashboard() {
-  return (
-    <div>
-      <h1>Dashboard</h1>
-    </div>
-  );
+  return <JobPostingDashboard />;
 }

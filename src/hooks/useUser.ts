@@ -5,6 +5,7 @@ import axios, { type AxiosError } from "axios";
 import { type User } from "~/types/user";
 import { useRouter } from "next/navigation";
 import { env } from "~/env";
+import { type BaseResponse } from "~/types/api";
 
 const useUser = () => {
   const auth = useAuth();
@@ -62,7 +63,7 @@ const useUser = () => {
   const profile = async () => {
     console.log("[ fetching user profile ]");
     const data = await apiClient
-      .get<User>("/v1/auth/user")
+      .get<BaseResponse<User>>("/auth/me")
       .then((res) => res.data)
       .catch((err: AxiosError) => {
         console.error("Error fetching user profile", {
