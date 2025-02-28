@@ -7,12 +7,20 @@ import { toast } from "sonner";
 import useApi from "./useApi";
 import { type BaseResponse } from "~/types/api";
 
+import { useRouter } from "next/navigation";
+
 interface Props {
   id: number;
 }
 
+/**
+ * Hook for handling job application submissions.
+ * Provides functionality to create an application and track its loading state.
+ */
 export const useApplication = ({ id }: Props) => {
   const { client } = useApi();
+
+  const router = useRouter();
 
   const postApplication = async (
     formData: z.infer<typeof applicationFormSchema>,
@@ -36,6 +44,11 @@ export const useApplication = ({ id }: Props) => {
     );
     return data;
   };
+
+  /**
+   * React Query mutation hook for handling the application submission
+   * with success and error handling.
+   */
   const { mutateAsync, isPending } = useMutation({
     mutationFn: postApplication,
     onMutate: (formData) => {
@@ -43,6 +56,8 @@ export const useApplication = ({ id }: Props) => {
     },
     onSuccess: () => {
       toast.success("Application submitted successfully");
+
+      router.replace("/recruiter/dashboard");
     },
     onError: (error) => {
       console.error("Error submitting application", { error });

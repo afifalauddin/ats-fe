@@ -9,6 +9,11 @@ interface Props {
   search?: string;
 }
 
+/**
+ * Custom hook to fetch and manage active job listings.
+ * Handles pagination, search functionality, and error states.
+ *
+ */
 export const useActiveJobList = ({ page = 1, limit = 20, search }: Props) => {
   type ResponseType = BaseResponseWithPagination<JobPosting[]>;
   const { client } = useApi();

@@ -18,6 +18,11 @@ type ResponseType = BaseResponseWithPagination<
   JobPostingWithTotalApplications[]
 >;
 
+/**
+ * Custom hook to fetch and manage job listings for a recruiter's dashboard.
+ * Handles pagination, search functionality, status filtering, and error states.
+ *
+ */
 export const useRecruiterJobList = ({
   page = 1,
   limit = 20,

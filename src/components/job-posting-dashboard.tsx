@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useRecruiterJobList } from "~/hooks/useRecruiterList";
 import { type JobStatus } from "~/types/api";
 import { StatusCombobox } from "./status-combobox";
+import Link from "next/link";
 
 export const JobPostingDashboard: React.FC = () => {
   const [search, setSearch] = useState("");
@@ -37,7 +38,11 @@ export const JobPostingDashboard: React.FC = () => {
   return (
     <div className="grid grid-cols-1 gap-4">
       <div className="flex w-full justify-end">
-        <Button className="bg-blue-600">Create New posting</Button>
+        <Link href="/recruiter/job-posting/create" passHref>
+          <Button className="bg-blue-600" type="button">
+            Create New posting
+          </Button>
+        </Link>
       </div>
 
       <div className="inline-flex gap-4">

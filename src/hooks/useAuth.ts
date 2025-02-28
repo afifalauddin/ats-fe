@@ -1,5 +1,10 @@
 import { api } from "~/lib/utils";
 
+/**
+ * Custom hook for handling authentication operations.
+ * Provides methods for setting, retrieving, and deleting authentication tokens.
+ */
+
 const useAuth = () => {
   const setToken = async (params: {
     accessToken: string;

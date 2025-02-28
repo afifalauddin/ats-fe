@@ -7,6 +7,10 @@ interface Props {
   id: number;
 }
 
+/**
+ * Custom hook to fetch and manage data for a specific job posting.
+ *
+ */
 export const useJobPosting = ({ id }: Props) => {
   type ResponseType = BaseResponse<JobPosting>;
   const { client } = useApi();
